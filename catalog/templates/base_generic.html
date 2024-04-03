@@ -19,6 +19,17 @@
       <div class="row">
         <div class="col-sm-2">
           {% block sidebar %}
+          {% if user.is_staff %}
+<hr>
+<ul class="sidebar-nav">
+<li>Staff</li>
+   <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+{% if perms.catalog.add_author %}
+   <li><a href="{% url 'author-create' %}">Create author</a></li>
+{% endif %}
+</ul>
+{% endif %}
+
             <ul class="sidebar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
               <li><a href="{% url 'books' %}">All books</a></li>
